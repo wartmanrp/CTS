@@ -19,11 +19,19 @@
                 </td>
                 <td class="text-center">@reservation.ReservationDateTime</td>
                 <td class="text-center">
-                    <a href="@Url.Action("App","Edit")" class="btn btn-sm btn-default">Edit</a>
-                    <form href="@Url.Action("App","Delete", new { id = reservation.Id })" class="btn btn-sm btn-danger">Delete</form>
+                    <a href="@Url.Action("Edit","App", new { id = reservation.Id})" class="btn btn-sm btn-default">Edit</a>
+                    @using (Html.BeginForm("Delete","App",null))
+                    {
+                       @Html.Hidden("Id", reservation.Id)
+                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    }
                 </td>
             </tr>
             }
         </table>
     </div>
 </div>
+
+@*<script>
+    Text
+</script>*@

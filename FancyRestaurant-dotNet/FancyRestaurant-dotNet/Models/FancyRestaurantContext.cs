@@ -4,37 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using Microsoft.Extensions.Configuration;
 
 
 namespace FancyRestaurant.Models
 {
    //TODO set up context
-   public class FancyRestaurantContext
+   public class FancyRestaurantContext : DbContext
    {
+      public FancyRestaurantContext() { }
 
-      public void SaveChanges()
+      public static FancyRestaurantContext Create()
       {
-
+         return new FancyRestaurantContext();
       }
       public DbSet<Reservation> Reservations { get; set; }
+
+      }
    }
-}
-//   public class FancyRestaurantContext : DbContext
-//   {
-//      private readonly IConfigurationRoot _config;
-
-//      public FancyRestaurantContext(IConfigurationRoot config, DbContextOptions options) : base(options)
-//      {
-//         _config = config;
-//      }
-
-//      protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//      {
-//         base.OnConfiguring(optionsBuilder);
-
-//         optionsBuilder.UseSqlServer(_config["Data:FancyRestaurantContext"]);
-//      }
-
-//      public DbSet<Reservation> Reservations { get; set; }
-//   }
-//}
