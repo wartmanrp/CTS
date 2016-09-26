@@ -1,0 +1,29 @@
+﻿@model IEnumerable<FancyRestaurant.Models.Reservation>
+@{
+   ViewBag.Title = "View Reservations";
+}
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h2>All Reservations</h2>
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Reservation Time</th>
+                <th>Actions</th>
+            </tr>
+            @foreach (var reservation in Model)
+            {
+            <tr>
+                <td class="text-left">
+                    <a href="@Url.Action("Details", "App", new { id = reservation.Id})">@reservation.Name</a>
+                </td>
+                <td class="text-center">@reservation.ReservationDateTime</td>
+                <td class="text-center">
+                    <a href="@Url.Action("App","Edit")" class="btn btn-sm btn-default">Edit</a>
+                    <form href="@Url.Action("App","Delete", new { id = reservation.Id })" class="btn btn-sm btn-danger">Delete</form>
+                </td>
+            </tr>
+            }
+        </table>
+    </div>
+</div>

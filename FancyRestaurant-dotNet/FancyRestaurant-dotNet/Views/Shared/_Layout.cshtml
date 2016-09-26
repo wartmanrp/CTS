@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Fancy Restaurant - @ViewBag.Title</title>
+    <meta charset="utf-8" />
+
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootswatch/spacelab/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/css/site.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div id="wrapper">
+        @if (ViewBag.Message != null)
+        {
+            if (ViewBag.MessageType == "success")
+            {
+            <div class="alert alert-success">@ViewBag.Message</div>
+            }
+            else if (ViewBag.MessageType == "error")
+            {
+            <div class="alert alert-danger">@ViewBag.Message</div>
+            }
+
+        }
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <a  href="@Url.Action("Index", "App")" class="navbar-brand">Fancy Restaurant</a>
+            </div>
+        </nav>
+        <aside>
+            <ul class="nav">
+                <li class="active"><a href="@Url.Action("Index", "App")">Home</a></li>
+                <li><a href="@Url.Action("MakeReservation", "App")">Make Reservation</a></li>
+                <li><a href="@Url.Action("Reservations","App")">View Reservations</a></li>
+            </ul>
+        </aside>
+        <main class="container-fluid">
+            @RenderBody()
+        </main>
+        <footer>
+            <div class="navbar navbar-default navbar-fixed-bottom">
+                <h4 class="text-center text-info">
+                    &copy; 2016 Fancy Restaurant
+                </h4>
+            </div>
+        </footer>
+    </div>
+
+
+    <script src="~/scripts/jquery-3.1.0.min.js"></script>
+    <script src="~/scripts/bootstrap.min.js"></script>
+    @RenderSection("scripts", false)
+</body>
+</html>

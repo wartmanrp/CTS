@@ -1,0 +1,30 @@
+﻿aside {
+    background: #2a2c36;
+    color: #eee;
+    position: fixed;
+    height: 100%;
+    width: 250px;
+    overflow: hidden;
+    left: 0;
+    margin: 0;
+}
+
+main {
+    margin: 50px 0 0 0;
+    padding: 100px 0 0 0;
+}
+
+#wrapper {
+    margin: 0 0 0 250px;
+    /*transition: margin-left ease .25s;*/
+}
+
+img {
+    display: block;
+    margin: auto;
+}
+
+.button-group-center {
+    margin: auto;
+    text-align: center;
+}

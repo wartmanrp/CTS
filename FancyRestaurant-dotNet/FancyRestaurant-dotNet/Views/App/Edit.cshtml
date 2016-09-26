@@ -1,0 +1,43 @@
+﻿@model FancyRestaurant.Models.Reservation
+@{
+   ViewBag.Title = "Make Reservation";
+}
+@section scripts {
+    <script src="~/scripts/jquery.validate.min.js"></script>
+    <script src="~/scripts/jquery.validate.unobtrusive.min.js"></script>
+}
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h2>Edit Reservation</h2>
+        @using (Html.BeginForm("Edit", "App", FormMethod.Post))
+        {
+           @Html.ValidationSummary()
+            <div class="form-group">
+                @Html.LabelFor(x => x.Name)&nbsp;
+                @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger"})
+                @Html.TextBoxFor(x => x.Name, new { @class = "form-control"})
+            </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.Phone)&nbsp;
+            @Html.ValidationMessageFor(x => x.Phone, "", new { @class = "text-danger" })
+            @Html.TextBoxFor(x => x.Phone, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.Seats)&nbsp;
+            @Html.ValidationMessageFor(x => x.Seats, "", new { @class = "text-danger" })
+            @Html.TextBoxFor(x => x.Seats, new { @class = "form-control", type = "number", min = "1", max = "12" })
+            @*<input class="form-control" asp-for="Seats" type="number" min="1" max="12" />*@
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.ReservationDateTime)&nbsp;
+            @Html.ValidationMessageFor(x => x.ReservationDateTime, "", new { @class = "text-danger" })
+            @Html.EditorFor(x => x.ReservationDateTime, new { @class = "form-control"})
+            @*<input class="form-control" asp-for="ReservationDateTime" type="datetime-local">*@
+        </div>
+        <div class="form-group">
+            <a href="@Url.Action("Index","App")" class="btn btn-default">Cancel</a>
+            <input class="btn btn-success" type="submit" value="Save" />
+        </div>
+        }
+    </div>
+</div>

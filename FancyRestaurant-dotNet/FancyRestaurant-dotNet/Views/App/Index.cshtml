@@ -1,0 +1,16 @@
+﻿
+@{
+   ViewBag.Title = "Home Page";
+}
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <img class="img-circle" src="~/Content/img/fancy_restaurant.jpg" alt="Fancy Restaurant" />
+        <h1 class="h1 text-center">Fancy Restaurant Reservation</h1><br />
+        <p class="lead text-center">Please use the menu to the left or the buttons below to make reservations for our guests.</p>
+        <br />
+        <div class="button-group-center">
+            <a href="@Url.Action("MakeReservation","App")" class="btn btn-lg btn-info">Make Reservation</a>
+            <a href="@Url.Action("Reservations","App")" class="btn btn-lg btn-default">View Reservations</a>
+        </div>
+    </div>
+</div>

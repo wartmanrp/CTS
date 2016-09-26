@@ -1,0 +1,26 @@
+﻿@model FancyRestaurant.Models.Reservation
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h2>Reservation Details</h2>
+        <div class="form-group">
+            @Html.LabelFor(x => x.Name)
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @readonly = "readonly"})
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.Phone)
+            @Html.TextBoxFor(x => x.Phone, new { @class = "form-control", @readonly = "readonly" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.Seats)
+            @Html.TextBoxFor(x => x.Seats, new { @class = "form-control", @readonly = "readonly", type = "number", min = "1", max = "12" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.ReservationDateTime)
+            @Html.EditorFor(x => x.ReservationDateTime, new { @class = "form-control", @readonly = "readonly" })
+        </div>
+        <div class="form-group">
+            <a href="@Url.Action("Reservations","App")" class="btn btn-default">Back</a>
+            <a href="@Url.Action("Edit","App", new { id = Model.Id })" class="btn btn-info">Edit</a>
+        </div>
+    </div>
+</div>
