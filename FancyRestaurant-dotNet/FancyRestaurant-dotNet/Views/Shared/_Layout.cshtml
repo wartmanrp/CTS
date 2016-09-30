@@ -4,11 +4,12 @@
     <title>Fancy Restaurant - @ViewBag.Title</title>
     <meta charset="utf-8" />
 
-    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    @*<link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/bootswatch/spacelab/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
-    <link href="~/Content/css/site.css" rel="stylesheet" />
+    <link href="~/Content/css/site.css" rel="stylesheet" />*@
 
+    @Styles.Render("~/Content/css")
 </head>
 <body>
     <div id="wrapper">
@@ -49,8 +50,10 @@
     </div>
 
 
-    <script src="~/scripts/jquery-3.1.0.min.js"></script>
-    <script src="~/scripts/bootstrap.min.js"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @*<script src="~/scripts/jquery-3.1.0.min.js"></script>
+    <script src="~/scripts/bootstrap.min.js"></script>*@
     @RenderSection("scripts", false)
 </body>
 </html>

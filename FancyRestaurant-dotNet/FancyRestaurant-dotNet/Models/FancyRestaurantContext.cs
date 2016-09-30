@@ -9,7 +9,6 @@ using Microsoft.Extensions.Configuration;
 
 namespace FancyRestaurant.Models
 {
-   //TODO set up context
    public class FancyRestaurantContext : DbContext
    {
       public FancyRestaurantContext() { }
