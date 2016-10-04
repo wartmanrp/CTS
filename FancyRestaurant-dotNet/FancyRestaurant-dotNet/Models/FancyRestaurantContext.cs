@@ -11,7 +11,7 @@ namespace FancyRestaurant.Models
 {
    public class FancyRestaurantContext : DbContext
    {
-      public FancyRestaurantContext() { }
+      public FancyRestaurantContext() {}
 
       public static FancyRestaurantContext Create()
       {

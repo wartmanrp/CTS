@@ -6,17 +6,18 @@ using FancyRestaurant.Models;
 using System.Web.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using FancyRestaurant_dotNet.Models;
+using Ninject;
 
 namespace FancyRestaurant.Controllers
 {
    public class AppController : Controller
    {
+      private IReservationRepository _repository;
 
-      private FancyRestaurantContext Db = new FancyRestaurantContext();
-
-
-      public AppController()
+      public AppController(IReservationRepository repository)
       {
+         _repository = repository;
       }
 
       public ActionResult Index()
@@ -26,7 +27,7 @@ namespace FancyRestaurant.Controllers
 
       public ActionResult Details(int id)
       {
-         var reservation = Db.Reservations.FirstOrDefault(r => r.Id == id);
+         var reservation = _repository.Reservations.FirstOrDefault(r => r.Id == id);
 
          return View(reservation);
       }
@@ -38,7 +39,7 @@ namespace FancyRestaurant.Controllers
 
       public ActionResult Edit(int id)
       {
-         var reservation = Db.Reservations.FirstOrDefault(r => r.Id == id);
+         var reservation = _repository.Reservations.FirstOrDefault(r => r.Id == id);
 
          return View(reservation);
       }
@@ -46,25 +47,10 @@ namespace FancyRestaurant.Controllers
       [HttpPost]
       public ActionResult Edit(Reservation reservation)
       {
+
          if (ModelState.IsValid)
          {
-            Reservation newReservation = new Reservation();
-            if (reservation.Id > 0)
-            {
-               newReservation.Id = reservation.Id;
-               Db.Reservations.Attach(newReservation);
-            } else
-            {
-               Db.Reservations.Add(newReservation);
-            }
-
-            newReservation.Name = reservation.Name;
-            newReservation.Phone = reservation.Phone;
-            newReservation.Seats = reservation.Seats;
-            newReservation.ReservationDateTime = reservation.ReservationDateTime;
-
-            Db.SaveChanges();
-
+            _repository.Save(reservation);
             ModelState.Clear();
             ViewBag.MessageType = "success";
             ViewBag.Message = "Reservation updated successfully";
@@ -81,22 +67,20 @@ namespace FancyRestaurant.Controllers
       [HttpPost]
       public ActionResult Delete(int id)
       {
-         var deletedReservation = Db.Reservations.Find(id);
+         var deletedReservation = _repository.Delete(id);
 
          if (deletedReservation != null)
          {
-            Db.Reservations.Remove(deletedReservation);
             ViewBag.MessageType = "success";
             ViewBag.Message = string.Format("Reservation for {0}, party of {1} for {2} was successfully deleted",
                 deletedReservation.Name, deletedReservation.Seats, deletedReservation.ReservationDateTime);
-            Db.SaveChanges();
          }
          return RedirectToAction("Index");
       }
 
       public ActionResult Reservations()
       {
-         return View(Db.Reservations);
+         return View(_repository.Reservations);
       }
    }
 }
