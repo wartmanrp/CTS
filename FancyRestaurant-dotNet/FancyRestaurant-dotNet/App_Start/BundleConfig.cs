@@ -11,7 +11,7 @@ namespace FancyRestaurant.App_Start
 
          bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include("~/scripts/bootstrap.min.js"));
 
-         bundles.Add(new StyleBundle("~/Content/css")
+         bundles.Add(new StyleBundle("~/Content/FancyRestaurantCss")
             .Include("~/Content/bootswatch/spacelab/bootstrap.min.css",
             "~/Content/font-awesome.min.css",
             "~/Content/css/site.css"));
